@@ -1,21 +1,93 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Main">
+    <Filter Include="00. Main">
       <UniqueIdentifier>{ba686dd8-3d48-49dd-ae84-322a3c8ee175}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Manager">
+    <Filter Include="01. Manager">
       <UniqueIdentifier>{b2b24e19-5c5c-4b20-8181-85c7570b8cda}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Headers">
+      <UniqueIdentifier>{22945199-695c-4e3c-9147-b7b44192af3f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Main\Network">
+      <UniqueIdentifier>{02b49f16-92c6-4733-9f30-fa1ddf641f6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Main\Buffer">
+      <UniqueIdentifier>{18395d79-7039-4b54-909e-ddf4eee8529a}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadManager.cpp">
-      <Filter>Manager</Filter>
+      <Filter>01. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>99. Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="TLS.cpp">
+      <Filter>99. Headers</Filter>
+    </ClCompile>
+    <ClCompile Include="IocpCore.cpp">
+      <Filter>00. Main\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="IocpObject.cpp">
+      <Filter>00. Main\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="IocpEvent.cpp">
+      <Filter>00. Main\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SocketManager.cpp">
+      <Filter>01. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>00. Main\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>00. Main\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="SendBuffer.cpp">
+      <Filter>00. Main\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="RecvBuffer.cpp">
+      <Filter>00. Main\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ThreadManager.h">
-      <Filter>Manager</Filter>
+      <Filter>01. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Types.h">
+      <Filter>99. Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>99. Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="TLS.h">
+      <Filter>99. Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="IocpCore.h">
+      <Filter>00. Main\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="IocpObject.h">
+      <Filter>00. Main\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="IocpEvent.h">
+      <Filter>00. Main\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SocketManager.h">
+      <Filter>01. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>00. Main\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>00. Main\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="SendBuffer.h">
+      <Filter>00. Main\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="RecvBuffer.h">
+      <Filter>00. Main\Buffer</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
