@@ -14,3 +14,7 @@ using uint64 = unsigned __int64;
 
 using IocpCoreRef = std::shared_ptr<class IocpCore>;
 using IocpObjectRef = std::shared_ptr<class IocpObject>;
+using IocpEventRef = std::shared_ptr<class IocpEvent>;
+
+using SendBufferRef = std::shared_ptr<class SendBuffer>;
+using RawBufferRef = std::shared_ptr<class RawBuffer>;

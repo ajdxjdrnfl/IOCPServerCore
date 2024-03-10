@@ -2,15 +2,23 @@
 #include "IocpObject.h"
 #include "IocpEvent.h"
 
+class RecvBuffer;
+
 class Session :
     public IocpObject
 {
+    enum
+    {
+        RECV_BUFFER_SIZE = 0x10000, // 4KB
+        SEND_BUFFER_SIZE = 0x10000, // 4KB
+    };
+
 public:
     Session();
     virtual ~Session();
 
 public:
-    void Send();
+    void Send(SendBufferRef sendBuffer);
     bool Connect();
     void Disconnect(const wstring& cause);
 
@@ -32,20 +40,33 @@ private:
 private:
     void HandleError(int32 errorCode);
 
+    void RemoveIocpEvent(IocpEvent* iocpEvent);
+    void AddIocpEvent(IocpEvent* iocpEvent);
+
+    void PushSendBuffer(SendBufferRef sendBuffer);
+    void PopAllSendBuffer(IocpEvent* iocpEvent);
+
 protected:
     virtual void OnConnected() { }
-    virtual void OnRecv(BYTE* buffer, int32 numOfBytes) { }
+    virtual int32 OnRecv(BYTE* buffer, int32 numOfBytes) { return numOfBytes; }
     virtual void OnSend(int32 numOfBytes) { }
     virtual void OnDisconnected() { }
 
 private:
     atomic<bool> _connected = false;
+    
+private:
+    USE_LOCK(SEND)
+    RecvBuffer _recvBuffer;
+    queue<SendBufferRef> _sendQueue;
+
+    atomic<bool> _sendRegistered = false;
 
 private:
-    IocpEvent _connectEvent;
-    IocpEvent _disconnectEvent;
-    IocpEvent _sendEvent;
-    IocpEvent _recvEvent;
+    USE_LOCK(EVENT)
+    vector<IocpEvent*> _iocpEvents;
+
+    
 
 };
 

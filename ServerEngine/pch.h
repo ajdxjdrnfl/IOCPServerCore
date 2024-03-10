@@ -24,6 +24,7 @@
 #include <assert.h>
 
 #include "Types.h"
+#include "Defines.h"
 #include "TLS.h"
 #include "SocketManager.h"
 #include "ThreadManager.h"

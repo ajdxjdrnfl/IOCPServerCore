@@ -16,6 +16,18 @@
     <Filter Include="00. Main\Buffer">
       <UniqueIdentifier>{18395d79-7039-4b54-909e-ddf4eee8529a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="02. Utils">
+      <UniqueIdentifier>{0890604c-cff4-4d7b-a92a-f711b4de1d34}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Main\Service">
+      <UniqueIdentifier>{a9ca0b98-21be-4134-8c47-d5cec79e55c5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="03. Memory">
+      <UniqueIdentifier>{eee451b5-7b47-481e-bd90-6d997e496ab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="99. Headers\Extra">
+      <UniqueIdentifier>{241ee38d-09d6-478b-80f3-c5cc73474a42}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadManager.cpp">
@@ -50,6 +62,16 @@
     </ClCompile>
     <ClCompile Include="RecvBuffer.cpp">
       <Filter>00. Main\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="RawBuffer.cpp">
+      <Filter>00. Main\Buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="NetAddress.cpp">
+      <Filter>02. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp" />
+    <ClCompile Include="MemoryPool.cpp">
+      <Filter>03. Memory</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -89,5 +111,21 @@
     <ClInclude Include="RecvBuffer.h">
       <Filter>00. Main\Buffer</Filter>
     </ClInclude>
+    <ClInclude Include="RawBuffer.h">
+      <Filter>00. Main\Buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Defines.h">
+      <Filter>99. Headers</Filter>
+    </ClInclude>
+    <ClInclude Include="NetAddress.h">
+      <Filter>02. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h" />
+    <ClInclude Include="MemoryPool.h">
+      <Filter>03. Memory</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="ServerEngine.rc" />
   </ItemGroup>
 </Project>

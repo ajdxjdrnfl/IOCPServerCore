@@ -1,9 +1,10 @@
 #include "pch.h"
 #include "SendBuffer.h"
 
-SendBuffer::SendBuffer(int32 bufferSize)
+SendBuffer::SendBuffer(int32 bufferSize) : RawBuffer(BufferType::Send)
 {
 	_buffer.resize(bufferSize);
+	_bufferSize = bufferSize;
 }
 
 SendBuffer::~SendBuffer()

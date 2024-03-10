@@ -8,6 +8,8 @@ enum class IocpEventType : uint8
 	Send
 };
 
+class RawBuffer;
+
 class IocpEvent : public OVERLAPPED
 {
 public:
@@ -20,11 +22,22 @@ public:
 
 	void SetOwner(IocpObjectRef owner) { _owner = owner; }
 
-	vector<BYTE>& GetBuffer() { return _buffer; }
+	void AddBuffer(RawBufferRef buffer)
+	{
+		_buffers.push_back(buffer);
+	}
+
+	int32 GetBufferLength()
+	{
+		return _buffers.size();
+	}
+
+	vector<RawBufferRef> GetBuffers() { return _buffers; }
 
 private:
 	IocpObjectRef _owner = nullptr;
 	IocpEventType _type;
 
-	vector<BYTE> _buffer;
+	vector<RawBufferRef> _buffers;
+	int32 _bufferSize;
 };
