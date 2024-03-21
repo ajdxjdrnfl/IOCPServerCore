@@ -18,3 +18,4 @@ using IocpEventRef = std::shared_ptr<class IocpEvent>;
 
 using SendBufferRef = std::shared_ptr<class SendBuffer>;
 using RawBufferRef = std::shared_ptr<class RawBuffer>;
+using SessionRef = std::shared_ptr<class Session>;

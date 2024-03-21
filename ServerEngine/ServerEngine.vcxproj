@@ -24,6 +24,7 @@
     <ClInclude Include="IocpEvent.h" />
     <ClInclude Include="IocpObject.h" />
     <ClInclude Include="Listener.h" />
+    <ClInclude Include="LockfreeStack.h" />
     <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="NetAddress.h" />
     <ClInclude Include="pch.h" />
@@ -42,6 +43,7 @@
     <ClCompile Include="IocpEvent.cpp" />
     <ClCompile Include="IocpObject.cpp" />
     <ClCompile Include="Listener.cpp" />
+    <ClCompile Include="LockfreeStack.cpp" />
     <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="NetAddress.cpp" />
     <ClCompile Include="pch.cpp">

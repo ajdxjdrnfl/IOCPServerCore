@@ -1,6 +1,6 @@
 #include "pch.h"
 #include "IocpCore.h"
-
+#include "IocpObject.h"
 IocpCore::IocpCore()
 {
 	_iocpHandle = ::CreateIoCompletionPort(INVALID_HANDLE_VALUE, 0, 0, 0);
@@ -12,9 +12,9 @@ IocpCore::~IocpCore()
 	::CloseHandle(_iocpHandle);
 }
 
-bool IocpCore::Register(SOCKET socket)
+bool IocpCore::Register(IocpObjectRef iocpObject)
 {
-	return ::CreateIoCompletionPort((HANDLE)socket, _iocpHandle, 0, 0 );
+	return ::CreateIoCompletionPort((HANDLE)iocpObject->GetHandle(), _iocpHandle, 0, 0);
 
 }
 
