@@ -1,8 +1,8 @@
 #pragma once
 #include "IocpObject.h"
 #include "IocpEvent.h"
-
-class RecvBuffer;
+#include "RecvBuffer.h"
+#include "NetAddress.h"
 
 class Session :
     public IocpObject
@@ -52,6 +52,16 @@ protected:
     virtual void OnSend(int32 numOfBytes) { }
     virtual void OnDisconnected() { }
 
+public:
+    void SetNetAddress(NetAddress netAddress) { _netAddress = netAddress; }
+    void SetService(ServiceRef service) { _service = service; }
+
+public:
+    ServiceRef GetService() { return _service; }
+    SessionRef GetSessionRef() { return static_pointer_cast<Session>(shared_from_this()); }
+    NetAddress GetNetAddress() { return _netAddress; }
+    RecvBuffer& GetRecvBuffer() { return _recvBuffer; }
+
 private:
     atomic<bool> _connected = false;
     
@@ -65,7 +75,9 @@ private:
 private:
     USE_LOCK(EVENT)
     vector<IocpEvent*> _iocpEvents;
-
+    
+    ServiceRef _service;
+    NetAddress _netAddress;
     
 
 };

@@ -4,10 +4,23 @@
 #include "Session.h"
 #include "Listener.h"
 
+Service::Service(IocpCoreRef iocpCore, NetAddress address, 
+	::function<SessionRef(void)> sessionFactory, int maxSessionCount)
+	: _iocpCore(iocpCore), _netAddress(address), 
+	_sessionFactory(sessionFactory), _maxSessionCount(maxSessionCount)
+{
+	
+}
+
+Service::~Service()
+{
+
+}
+
 SessionRef Service::CreateSession()
 {
 	SessionRef session = _sessionFactory();
-	
+	session->SetService(shared_from_this());
 	if (_iocpCore->Register(session) == false)
 		return nullptr;
 	return session;
@@ -36,6 +49,7 @@ bool ServerService::Start()
 
 	_listener = make_shared<Listener>();
 	
+	_listener->
 	
 }
 

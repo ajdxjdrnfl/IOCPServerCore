@@ -1,8 +1,10 @@
 #pragma once
+#include "NetAddress.h"
+
 class Service : public enable_shared_from_this<Service>
 {
 public:
-	Service();
+	Service(IocpCoreRef iocpCore, NetAddress address, ::function<SessionRef(void)> sessionFactory, int maxSessionCount = 1);
 	virtual ~Service();
 
 	virtual bool Start() abstract;
@@ -15,8 +17,11 @@ public:
 	void AddSession(SessionRef session);
 	void ReleaseSession(SessionRef session);
 
+public:
+	NetAddress GetNetAddress() { return _netAddress; }
 	int32 GetCurrentSessionCount() { return _sessionCount; }
 	int32 GetMaxSessionCount() { return _maxSessionCount; }
+
 private:
 	IocpCoreRef _iocpCore;
 
@@ -25,6 +30,8 @@ private:
 	int32 _maxSessionCount = 0;
 	::function<SessionRef(void)> _sessionFactory;
 
+private:
+	NetAddress _netAddress = {};
 };
 
 

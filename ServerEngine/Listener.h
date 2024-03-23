@@ -6,14 +6,18 @@ public:
 	Listener();
 	virtual ~Listener();
 
-	virtual void Dispatch() override;
+	virtual void Dispatch(IocpEvent* iocpEvent, int32 numOfBytes) override;
 	
-private:
+public:
 	void StartAccept();
-	void ProcessAccept();
+
+private:
+	void ProcessAccept(IocpEvent* acceptEvent);
+
 	void RegisterAccept(class IocpEvent* acceptEvent);
 
 private:
-	
+	ServerServiceRef _service;
+	vector<IocpEvent*> _acceptEvents;
 };
 

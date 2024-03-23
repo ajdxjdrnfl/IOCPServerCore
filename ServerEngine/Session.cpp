@@ -3,7 +3,7 @@
 #include "SendBuffer.h"
 #include "RecvBuffer.h"
 #include "RawBuffer.h"
-
+#include "Service.h"
 
 Session::Session() : _recvBuffer(RECV_BUFFER_SIZE)
 {
