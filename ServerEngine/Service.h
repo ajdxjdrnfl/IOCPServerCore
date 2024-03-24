@@ -39,8 +39,8 @@ class ServerService : public Service
 {
 	using Super = Service;
 public:
-	ServerService();
-	virtual ~ServerService();
+	ServerService(IocpCoreRef iocpCore, NetAddress address, ::function<SessionRef(void)> sessionFactory, int maxSessionCount = 1);
+	virtual ~ServerService() { }
 	virtual bool Start() override;
 
 private:
@@ -52,7 +52,7 @@ class ClientService : public Service
 {
 	using Super = Service;
 public:
-	ClientService();
-	virtual ~ClientService();
+	ClientService(IocpCoreRef iocpCore, NetAddress address, ::function<SessionRef(void)> sessionFactory, int maxSessionCount = 1);
+	virtual ~ClientService() { }
 	virtual bool Start() override;
 };

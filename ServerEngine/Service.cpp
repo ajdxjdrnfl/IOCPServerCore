@@ -42,6 +42,11 @@ void Service::ReleaseSession(SessionRef session)
 	
 }
 
+ServerService::ServerService(IocpCoreRef iocpCore, NetAddress address, ::function<SessionRef(void)> sessionFactory, int maxSessionCount)
+{
+
+}
+
 bool ServerService::Start()
 {
 	if (CanStart() == false)
@@ -49,12 +54,25 @@ bool ServerService::Start()
 
 	_listener = make_shared<Listener>();
 	
-	_listener->
+	ServerServiceRef service = static_pointer_cast<ServerService>(shared_from_this());
 	
+	if (_listener->StartAccept(service) == false)
+		return false;
+
+	return true;
+}
+
+ClientService::ClientService(IocpCoreRef iocpCore, NetAddress address, ::function<SessionRef(void)> sessionFactory, int maxSessionCount)
+	: Super(iocpCore, address, sessionFactory, maxSessionCount)
+{
+
+
 }
 
 bool ClientService::Start()
 {
 	if (CanStart() == false)
 		return false;
+
+	
 }

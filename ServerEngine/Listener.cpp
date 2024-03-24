@@ -12,6 +12,7 @@ Listener::Listener()
 
 Listener::~Listener()
 {
+	SocketManager::Close(_socket);
 
 }
 
@@ -21,31 +22,36 @@ void Listener::Dispatch(IocpEvent* iocpEvent, int32 numOfBytes)
 	ProcessAccept(iocpEvent);
 }
 
-void Listener::StartAccept()
+bool Listener::StartAccept(ServerServiceRef service)
 {
 	
+	if (service == nullptr)
+		return false;
+
+	_service = service;
+
 	_socket = SocketManager::CreateSocket();
 
 	if (_socket == INVALID_SOCKET)
-		return;
+		return false;
 
 	if (SocketManager::SetReuseAddress(_socket, true) == false)
-		return;
+		return false;
 
 	if (SocketManager::SetLinger(_socket, 0, 0) == false)
-		return;
+		return false;
 
-	if (SocketManager::BindAnyAddress(_socket, 7777) == false)
-		return;
+	if (SocketManager::Bind(_socket, _service->GetNetAddress()) == false)
+		return false;
 
 	if (SocketManager::Listen(_socket) == false)
-		return;
-
+		return false;
 
 	IocpEvent* acceptEvent = new IocpEvent(IocpEventType::Accept);
 	acceptEvent->SetOwner(shared_from_this());
 	_acceptEvents.push_back(acceptEvent);
 	RegisterAccept(acceptEvent);
+	return true;
 }
 
 void Listener::RegisterAccept(IocpEvent* acceptEvent)

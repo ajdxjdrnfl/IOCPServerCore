@@ -7,12 +7,12 @@
 
 Session::Session() : _recvBuffer(RECV_BUFFER_SIZE)
 {
-	
+	_socket = SocketManager::CreateSocket();
 }
 
 Session::~Session()
 {
-
+	SocketManager::Close(_socket);
 }
 
 void Session::Send(SendBufferRef sendBuffer)

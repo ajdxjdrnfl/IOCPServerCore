@@ -31,6 +31,9 @@
     <Filter Include="04. DataStructure">
       <UniqueIdentifier>{2fcaaa9f-d09c-48f3-9d96-3a10e020f7ec}</UniqueIdentifier>
     </Filter>
+    <Filter Include="05. Application">
+      <UniqueIdentifier>{98e2a3c5-5723-4600-8565-8e18935b3c25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadManager.cpp">
@@ -78,7 +81,15 @@
     <ClCompile Include="Service.cpp">
       <Filter>00. Main\Service</Filter>
     </ClCompile>
-    <ClCompile Include="LockfreeStack.cpp" />
+    <ClCompile Include="BufferReader.cpp">
+      <Filter>02. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferWriter.cpp">
+      <Filter>02. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="LockfreeStack.cpp">
+      <Filter>04. DataStructure</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ThreadManager.h">
@@ -132,7 +143,15 @@
     <ClInclude Include="Service.h">
       <Filter>00. Main\Service</Filter>
     </ClInclude>
-    <ClInclude Include="LockfreeStack.h" />
+    <ClInclude Include="BufferReader.h">
+      <Filter>02. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferWriter.h">
+      <Filter>02. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LockfreeStack.h">
+      <Filter>04. DataStructure</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ServerEngine.rc" />

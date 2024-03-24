@@ -9,7 +9,7 @@ public:
 	virtual void Dispatch(IocpEvent* iocpEvent, int32 numOfBytes) override;
 	
 public:
-	void StartAccept();
+	bool StartAccept(ServerServiceRef service);
 
 private:
 	void ProcessAccept(IocpEvent* acceptEvent);
