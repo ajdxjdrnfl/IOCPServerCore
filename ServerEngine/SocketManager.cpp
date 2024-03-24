@@ -1,5 +1,6 @@
 #include "pch.h"
 #include "SocketManager.h"
+#include "NetAddress.h"
 
 LPFN_CONNECTEX		SocketManager::ConnectEx = nullptr;
 LPFN_DISCONNECTEX	SocketManager::DisconnectEx = nullptr;
@@ -10,13 +11,13 @@ void SocketManager::Init()
 	WSADATA wsaData;
 	assert(::WSAStartup(MAKEWORD(2, 2), OUT & wsaData) == 0);
 	
-	SOCKET tempClient = CreateSocket();
+	SOCKET tempSocket = CreateSocket();
 
-	assert(BindWindowsFunction(dummySocket, WSAID_CONNECTEX, reinterpret_cast<LPVOID*>(&ConnectEx)));
-	assert(BindWindowsFunction(dummySocket, WSAID_DISCONNECTEX, reinterpret_cast<LPVOID*>(&DisconnectEx)));
-	assert(BindWindowsFunction(dummySocket, WSAID_ACCEPTEX, reinterpret_cast<LPVOID*>(&AcceptEx)));
+	assert(BindWindowsFunction(tempSocket, WSAID_CONNECTEX, reinterpret_cast<LPVOID*>(&ConnectEx)));
+	assert(BindWindowsFunction(tempSocket, WSAID_DISCONNECTEX, reinterpret_cast<LPVOID*>(&DisconnectEx)));
+	assert(BindWindowsFunction(tempSocket, WSAID_ACCEPTEX, reinterpret_cast<LPVOID*>(&AcceptEx)));
 
-	Close(dummySocket);
+	Close(tempSocket);
 }
 
 void SocketManager::Clear()
@@ -68,10 +69,10 @@ bool SocketManager::SetUpdateAcceptSocket(SOCKET socket, SOCKET listenSocket)
 	return SetSockOpt(socket, SOL_SOCKET, SO_UPDATE_ACCEPT_CONTEXT, listenSocket);
 }
 
-//bool SocketManager::Bind(SOCKET socket, NetAddress netAddr)
-//{
-//	return SOCKET_ERROR != ::bind(socket, reinterpret_cast<const SOCKADDR*>(&netAddr.GetSockAddr()), sizeof(SOCKADDR_IN));
-//}
+bool SocketManager::Bind(SOCKET socket, NetAddress netAddr)
+{
+	return SOCKET_ERROR != ::bind(socket, reinterpret_cast<const SOCKADDR*>(&netAddr.GetSockAddr()), sizeof(SOCKADDR_IN));
+}
 
 bool SocketManager::Bind(SOCKET socket, SOCKADDR_IN sockAddr)
 {

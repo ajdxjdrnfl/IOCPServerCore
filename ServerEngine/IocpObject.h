@@ -7,6 +7,7 @@ public:
 
 	virtual void Dispatch() abstract;
 	HANDLE GetHandle() { return reinterpret_cast<HANDLE>(_socket); }
+	SOCKET GetSocket() { return _socket; }
 	virtual void Dispatch(struct IocpEvent* iocpEvent, int32 numOfBytes = 0) abstract;
 
 protected:

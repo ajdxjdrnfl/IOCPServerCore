@@ -7,7 +7,7 @@ public:
 
 	HANDLE GetHandle() { return _iocpHandle; }
 
-	bool Register(SOCKET socket);
+	bool Register(IocpObjectRef iocpObject);
 	bool Dispatch(uint32 timeoutMs = INFINITE);
 
 private:

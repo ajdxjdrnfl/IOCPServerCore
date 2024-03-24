@@ -19,11 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BufferReader.h" />
+    <ClInclude Include="BufferWriter.h" />
     <ClInclude Include="Defines.h" />
     <ClInclude Include="IocpCore.h" />
     <ClInclude Include="IocpEvent.h" />
     <ClInclude Include="IocpObject.h" />
     <ClInclude Include="Listener.h" />
+    <ClInclude Include="LockfreeStack.h" />
     <ClInclude Include="MemoryPool.h" />
     <ClInclude Include="NetAddress.h" />
     <ClInclude Include="pch.h" />
@@ -38,10 +41,13 @@
     <ClInclude Include="Types.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="BufferReader.cpp" />
+    <ClCompile Include="BufferWriter.cpp" />
     <ClCompile Include="IocpCore.cpp" />
     <ClCompile Include="IocpEvent.cpp" />
     <ClCompile Include="IocpObject.cpp" />
     <ClCompile Include="Listener.cpp" />
+    <ClCompile Include="LockfreeStack.cpp" />
     <ClCompile Include="MemoryPool.cpp" />
     <ClCompile Include="NetAddress.cpp" />
     <ClCompile Include="pch.cpp">

@@ -16,5 +16,10 @@ using IocpCoreRef = std::shared_ptr<class IocpCore>;
 using IocpObjectRef = std::shared_ptr<class IocpObject>;
 using IocpEventRef = std::shared_ptr<class IocpEvent>;
 
+using ServiceRef = std::shared_ptr<class Service>;
+using ServerServiceRef = std::shared_ptr<class ServerService>;
+using ClientServiceRef = std::shared_ptr<class ClientService>;
+
 using SendBufferRef = std::shared_ptr<class SendBuffer>;
 using RawBufferRef = std::shared_ptr<class RawBuffer>;
+using SessionRef = std::shared_ptr<class Session>;

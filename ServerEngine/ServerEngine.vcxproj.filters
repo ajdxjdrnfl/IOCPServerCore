@@ -28,6 +28,12 @@
     <Filter Include="99. Headers\Extra">
       <UniqueIdentifier>{241ee38d-09d6-478b-80f3-c5cc73474a42}</UniqueIdentifier>
     </Filter>
+    <Filter Include="04. DataStructure">
+      <UniqueIdentifier>{2fcaaa9f-d09c-48f3-9d96-3a10e020f7ec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="05. Application">
+      <UniqueIdentifier>{98e2a3c5-5723-4600-8565-8e18935b3c25}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadManager.cpp">
@@ -69,9 +75,20 @@
     <ClCompile Include="NetAddress.cpp">
       <Filter>02. Utils</Filter>
     </ClCompile>
-    <ClCompile Include="Service.cpp" />
     <ClCompile Include="MemoryPool.cpp">
       <Filter>03. Memory</Filter>
+    </ClCompile>
+    <ClCompile Include="Service.cpp">
+      <Filter>00. Main\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferReader.cpp">
+      <Filter>02. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="BufferWriter.cpp">
+      <Filter>02. Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="LockfreeStack.cpp">
+      <Filter>04. DataStructure</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -120,9 +137,20 @@
     <ClInclude Include="NetAddress.h">
       <Filter>02. Utils</Filter>
     </ClInclude>
-    <ClInclude Include="Service.h" />
     <ClInclude Include="MemoryPool.h">
       <Filter>03. Memory</Filter>
+    </ClInclude>
+    <ClInclude Include="Service.h">
+      <Filter>00. Main\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferReader.h">
+      <Filter>02. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="BufferWriter.h">
+      <Filter>02. Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="LockfreeStack.h">
+      <Filter>04. DataStructure</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
