@@ -101,6 +101,6 @@ void Listener::ProcessAccept(IocpEvent* acceptEvent)
 	// re-use accpetEvent
 
 	RegisterAccept(acceptEvent);
-	session->ProcessConnect();
+	session->Connect();
 	
 }

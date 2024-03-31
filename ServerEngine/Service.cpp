@@ -17,6 +17,15 @@ Service::~Service()
 
 }
 
+void Service::CloseService()
+{
+	for (auto& session : _sessions)
+	{
+		session->Disconnect(L"Close Service");
+	}
+	_sessions.clear();
+}
+
 SessionRef Service::CreateSession()
 {
 	SessionRef session = _sessionFactory();
@@ -43,6 +52,7 @@ void Service::ReleaseSession(SessionRef session)
 }
 
 ServerService::ServerService(IocpCoreRef iocpCore, NetAddress address, ::function<SessionRef(void)> sessionFactory, int maxSessionCount)
+	: Super(iocpCore, address, sessionFactory, maxSessionCount)
 {
 
 }
@@ -74,5 +84,14 @@ bool ClientService::Start()
 	if (CanStart() == false)
 		return false;
 
-	
+	const int32 sessionCount = GetMaxSessionCount();
+	for (int32 i = 0; i < sessionCount; i++)
+	{
+		SessionRef session = CreateSession();
+		AddSession(session);
+		if (session->Connect() == false)
+			return false;
+
+		return true;
+	}
 }

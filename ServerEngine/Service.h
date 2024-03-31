@@ -31,6 +31,9 @@ private:
 	::function<SessionRef(void)> _sessionFactory;
 
 private:
+	// BehaviorManager
+
+private:
 	NetAddress _netAddress = {};
 };
 

@@ -11,6 +11,9 @@ public:
 	bool Dispatch(uint32 timeoutMs = INFINITE);
 
 private:
+	void ErrorExit(DWORD dw);
+
+private:
 	HANDLE _iocpHandle;
 };
 

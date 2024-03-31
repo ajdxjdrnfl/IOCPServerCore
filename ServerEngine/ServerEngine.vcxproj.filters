@@ -34,6 +34,15 @@
     <Filter Include="05. Application">
       <UniqueIdentifier>{98e2a3c5-5723-4600-8565-8e18935b3c25}</UniqueIdentifier>
     </Filter>
+    <Filter Include="00. Main\Network\Object">
+      <UniqueIdentifier>{cd5cb751-59f1-472b-9240-4d6bead32c43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Main\Network\Behavior">
+      <UniqueIdentifier>{088e976b-ba61-4551-a4f2-870c79b3bd37}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="00. Main\Job">
+      <UniqueIdentifier>{32c8ddc3-d1d0-47ed-92da-1b7e75f8b709}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="ThreadManager.cpp">
@@ -48,20 +57,11 @@
     <ClCompile Include="IocpCore.cpp">
       <Filter>00. Main\Network</Filter>
     </ClCompile>
-    <ClCompile Include="IocpObject.cpp">
-      <Filter>00. Main\Network</Filter>
-    </ClCompile>
     <ClCompile Include="IocpEvent.cpp">
       <Filter>00. Main\Network</Filter>
     </ClCompile>
     <ClCompile Include="SocketManager.cpp">
       <Filter>01. Manager</Filter>
-    </ClCompile>
-    <ClCompile Include="Listener.cpp">
-      <Filter>00. Main\Network</Filter>
-    </ClCompile>
-    <ClCompile Include="Session.cpp">
-      <Filter>00. Main\Network</Filter>
     </ClCompile>
     <ClCompile Include="SendBuffer.cpp">
       <Filter>00. Main\Buffer</Filter>
@@ -90,6 +90,34 @@
     <ClCompile Include="LockfreeStack.cpp">
       <Filter>04. DataStructure</Filter>
     </ClCompile>
+    <ClCompile Include="IocpObject.cpp">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Listener.cpp">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Session.cpp">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="PacketSession.cpp">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpServerService.cpp">
+      <Filter>00. Main\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpClientService.cpp">
+      <Filter>00. Main\Service</Filter>
+    </ClCompile>
+    <ClCompile Include="BehaviorManager.cpp">
+      <Filter>01. Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="BaseBehavior.cpp">
+      <Filter>00. Main\Network\Behavior</Filter>
+    </ClCompile>
+    <ClCompile Include="HttpSession.cpp">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClCompile>
+    <ClCompile Include="Job.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ThreadManager.h">
@@ -107,20 +135,11 @@
     <ClInclude Include="IocpCore.h">
       <Filter>00. Main\Network</Filter>
     </ClInclude>
-    <ClInclude Include="IocpObject.h">
-      <Filter>00. Main\Network</Filter>
-    </ClInclude>
     <ClInclude Include="IocpEvent.h">
       <Filter>00. Main\Network</Filter>
     </ClInclude>
     <ClInclude Include="SocketManager.h">
       <Filter>01. Manager</Filter>
-    </ClInclude>
-    <ClInclude Include="Listener.h">
-      <Filter>00. Main\Network</Filter>
-    </ClInclude>
-    <ClInclude Include="Session.h">
-      <Filter>00. Main\Network</Filter>
     </ClInclude>
     <ClInclude Include="SendBuffer.h">
       <Filter>00. Main\Buffer</Filter>
@@ -152,6 +171,34 @@
     <ClInclude Include="LockfreeStack.h">
       <Filter>04. DataStructure</Filter>
     </ClInclude>
+    <ClInclude Include="IocpObject.h">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Listener.h">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Session.h">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="PacketSession.h">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpServerService.h">
+      <Filter>00. Main\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpClientService.h">
+      <Filter>00. Main\Service</Filter>
+    </ClInclude>
+    <ClInclude Include="BehaviorManager.h">
+      <Filter>01. Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="BaseBehavior.h">
+      <Filter>00. Main\Network\Behavior</Filter>
+    </ClInclude>
+    <ClInclude Include="HttpSession.h">
+      <Filter>00. Main\Network\Object</Filter>
+    </ClInclude>
+    <ClInclude Include="Job.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="ServerEngine.rc" />

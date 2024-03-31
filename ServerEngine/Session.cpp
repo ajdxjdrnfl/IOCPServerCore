@@ -77,7 +77,7 @@ bool Session::RegisterConnect()
 	if (SocketManager::SetReuseAddress(_socket, true) == false)
 		return false;
 
-	if (SocketManager::BindAnyAddress(_socket, 0) == false)
+	if (SocketManager::Bind(_socket, _netAddress) == false)
 		return false;
 
 	IocpEvent* event = new IocpEvent(IocpEventType::Disconnect);
@@ -191,7 +191,8 @@ void Session::ProcessConnect()
 	
 	_connected.store(true);
 
-	// 세션 등록
+	// 
+
 	GetService()->AddSession(GetSessionRef());
 
 	OnConnected();
