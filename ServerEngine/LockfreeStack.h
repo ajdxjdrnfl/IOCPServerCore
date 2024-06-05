@@ -29,8 +29,6 @@ public:
 
 	void Push(const T& data)
 	{
-		int count = _count.load();
-
 		Node<T>* newNode = new Node<T>(data);
 
 		newNode->next = _head.load();
