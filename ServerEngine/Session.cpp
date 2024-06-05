@@ -322,6 +322,6 @@ void Session::PopAllSendBuffer(IocpEvent* iocpEvent)
 
 	if (writeSize >= SEND_BUFFER_SIZE)
 	{
-		// TODO : Send Buffer Overflow ¿¡·¯
+		// TODO : Send Buffer Overflow Error
 	}
 }

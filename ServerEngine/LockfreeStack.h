@@ -1,4 +1,5 @@
 #pragma once
+
 template <typename T>
 struct Node
 {
@@ -28,16 +29,13 @@ public:
 
 	void Push(const T& data)
 	{
-		if (_count.load() >= 10)
-			return;
+		int count = _count.load();
 
 		Node<T>* newNode = new Node<T>(data);
 
 		newNode->next = _head.load();
 
 		while (_head.compare_exchange_strong(newNode->next, newNode) == false);
-
-		_count.fetch_add(1);
 
 	}
 
@@ -56,7 +54,6 @@ public:
 
 		while (hp->node != nullptr && _head.compare_exchange_strong(hp->node, hp->node->next) == false);
 
-
 		if (hp->node == nullptr)
 		{
 			ReleaseHazardPointer(hp);
@@ -66,11 +63,8 @@ public:
 		Node<T>* node = hp->node;
 		node->next = nullptr;
 		value = hp->node->data;
-		ReleaseHazardPointer(hp);
 		AddRetireList(node);
-
-
-		_count.fetch_add(-1);
+		ReleaseHazardPointer(hp);
 
 		return true;
 	}
@@ -82,7 +76,7 @@ public:
 
 		for (p = _hpHead.load(); p != nullptr; p = p->next)
 		{
-			bool active = p->active;
+			bool active = p->active.load();
 
 			if (active == false)
 			{
@@ -92,7 +86,7 @@ public:
 		}
 
 		p = new HazardPointer<T>();
-		p->active = true;
+		p->active.store(true);
 		p->node = nullptr;
 
 		p->next = _hpHead.load();
@@ -107,12 +101,13 @@ public:
 	void ReleaseHazardPointer(HazardPointer<T>* hp)
 	{
 		hp->node = nullptr;
-		hp->active = false;
+		hp->active.store(false);
 	}
 
 	void AddRetireList(Node<T>* node)
 	{
 		_retireList[_threadId].push_back(node);
+
 		if (_retireList[_threadId].size() >= 10)
 		{
 			RemoveRetireList();
@@ -125,35 +120,49 @@ public:
 
 		HazardPointer<T>* p = nullptr;
 
+		vector<Node<T>*> tempList;
+
 		for (p = _hpHead.load(); p != nullptr; p = p->next)
 		{
+
 			Node<T>* node = p->node;
+
 			if (node != nullptr)
 				hpList.push_back(node);
 		}
 
 		auto iter = _retireList[_threadId].end();
-
+		auto prevIter = iter;
 		for (int i = 0; i < hpList.size(); i++)
 		{
 			Node<T>* node = hpList[i];
-			iter = remove_if(_retireList[_threadId].begin(), iter, [node](Node<T>* list)
+			iter = remove_if(_retireList[_threadId].begin(), prevIter, [node](Node<T>* list)
 			{
 				return list == node;
 			});
+
+			if (iter != prevIter)
+			{
+				tempList.push_back(node);
+			}
+
+			prevIter = iter;
 		}
 
 		int index = iter - _retireList[_threadId].begin();
-		int index2 = _retireList[_threadId].end() - _retireList[_threadId].begin();
-		_head;
+
 		for (int i = 0; i < index; i++)
 		{
-			delete _retireList[_threadId][i];
-			//_retireList[_threadId][i] = nullptr;
+			Node<T>* node = _retireList[_threadId][i];
+			delete node;
+			_retireList[_threadId][i] = nullptr;
 		}
 
-		_retireList[_threadId].erase(_retireList[_threadId].begin(), iter);
-		int a = 0;
+		if (tempList.empty())
+			_retireList[_threadId].clear();
+		else
+			_retireList[_threadId] = tempList;
+
 	}
 
 	void SetThreadId(int threadId)
@@ -164,9 +173,11 @@ public:
 
 
 private:
+	// CRITICAL SECTION
 	::atomic<Node<T>*> _head = nullptr;
 	::atomic<HazardPointer<T>*> _hpHead = nullptr;
-	::atomic<int> _count = 0;
+
+private:
 	vector<vector<Node<T>*>> _retireList;
 
 public:
